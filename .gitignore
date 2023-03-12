@@ -1,12 +1,1 @@
-data/*
-models/*
-save/*
-runs/*
-.idea/*
-*.ipynb_checkpoints
-*.iml
-*.xml
-*.DS_Store
-**/__pycache__/ 
-requirements.txt
-src/__pycache__/*
+
