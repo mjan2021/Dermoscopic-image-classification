@@ -18,6 +18,7 @@ Create a seprate environment and install all dependencies
 
 #### Create Environment
 1. Virtual Environment
+
 Create VENV environment
 `python -m venv /path/to/environemnt/ `
 
@@ -26,6 +27,7 @@ Activate the environment
 
 
 2. Conda
+
 Create Conda Environment
 `conda create env --name name-of-envrionment`
 
