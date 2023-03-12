@@ -51,6 +51,12 @@ torch.cuda.is_available()
 
 ## Running
 
+#### Training
+```
+python train.py 
+```
+
+
 
 
 
