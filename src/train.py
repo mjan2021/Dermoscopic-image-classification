@@ -353,14 +353,10 @@ if __name__ == '__main__':
             test_loss_epoch = test_loss_epoch / len(test_loader.sampler)
             test_acc_epoch = test_acc_epoch / len(test_loader.sampler) * 100
 
-<<<<<<< Updated upstream
-            # print("Epoch:{}/{}\nAVG Training Loss:{:.3f} \t Testing Loss:{:.3f}\nAVG Training Acc: {:.2f} % \t Testing Acc {:.2f} % ".format(epoch, args.epochs, train_loss,  val_loss, train_acc,  val_acc))
-=======
 
             # print("Epoch:{}/{}\nAVG Training Loss:{:.3f} \t Testing Loss:{:.3f}\nAVG Training Acc: {:.2f} % \t Testing
             # Acc {:.2f} % ".format(epoch, args.epochs, train_loss,  val_loss, train_acc,  val_acc))
             
->>>>>>> Stashed changes
             # ======================= Save per Epoch ======================================= #
 
             logger.add_scalars('Loss', {'train': train_loss,
@@ -387,26 +383,16 @@ if __name__ == '__main__':
 
         # ======================= Test Model on HOS ======================= #
 
-<<<<<<< Updated upstream
-        test_loss, test_correct, cf_figure_fold, cf_matrix = test_inference(model, device, test_loader, criterion,
-                                                                            class_names)
-=======
         # ======================= Test Model on HOS ======================= #
 
         test_loss, test_correct, cf_figure_fold, cf_matrix = test_inference(model,device,test_loader,criterion,class_names)
->>>>>>> Stashed changes
 
         logger.add_figure("Confusion Matrix Fold", cf_figure_fold, fold)
 
         test_loss = test_loss / len(test_loader.sampler)
         test_acc = test_correct / len(test_loader.sampler) * 100
 
-<<<<<<< Updated upstream
-        np.save(f'../output_files/cf_matrix/{model._get_name()}_{args.modality}_{args.finetune}_Fold{fold}.npy',
-                cf_matrix)
-=======
         np.save(f'../output_files/cf_matrix/{model._get_name()}_{args.modality}_{args.finetune}_Fold{fold}.npy', cf_matrix)
->>>>>>> Stashed changes
 
         # print("Fold:{}/{}\nTesting Loss:{:.3f} \t Testing Acc:{:.3f}% ".format(fold,test_loss, test_acc))
         # print(f"Fold:{fold}\nTesting Loss:{test_loss} \t Testing Acc:{test_acc}%")
@@ -416,11 +402,6 @@ if __name__ == '__main__':
         logger.add_scalar('Fold/Acc', test_acc, fold)
         logger.add_scalar('Fold/Loss', test_loss, fold)
 
-<<<<<<< Updated upstream
-        #
-
-=======
->>>>>>> Stashed changes
         # ======================= Save model if new high accuracy ======================= #
         if test_acc > best_acc:
             # print('#'*25)
