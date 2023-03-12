@@ -15,7 +15,7 @@ def args_parser():
     parser.add_argument('--batch', type=int, default=8,
                         help='batch size')
 
-    parser.add_argument('--model', type=str, default='convext', help='model name')
+    parser.add_argument('--model', type=str, default='resnet', help='model name')
     
     parser.add_argument('--finetune', type=bool, default=False, help='finetune by adding layers')
 
@@ -34,16 +34,12 @@ def args_parser():
     
     parser.add_argument('--modality', type=str, default='augmented', help="type of data [original or augmented or GAN]")
     
-    parser.add_argument('--imbalanced', type=bool, default=False, help="To use cuda, set \
-                        to a specific GPU ID. Default set to use CPU.")
 
     parser.add_argument('--momentum', type=float, default=0.9,
                         help='SGD momentum (default: 0.9)')
     
-    parser.add_argument('--tensorboard', type=bool, default=True,
-                        help='Log Metrics to TensorBoard')
-    parser.add_argument('--logger', type=str, default = 'tb',
-                       help= 'Logger / tensorboard(tb) or Wandb(wb)')
+    parser.add_argument('--logger', type=str, default = 'local',
+                       help= 'Logger / local or tensorboard(tb)')
 
     args = parser.parse_args()
 

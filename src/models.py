@@ -1,7 +1,5 @@
-import torch
-import torch.nn as nn
-from torchvision import models
 
+from imports import *
 class cnn():
     pass
 

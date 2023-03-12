@@ -1,0 +1,18 @@
+cff-version: 1.0.0
+preferred-citation:
+  type: software
+  message: If you use this software, please cite it as below.
+  authors:
+  - family-names: Alsaidi
+    given-names: Mostapha
+    orcid: "https://orcid.org/0000-0002-5390-4316"
+  - family-names: Jan
+    given-names: Muhammad Tanveer
+    orcid: "https://orcid.org/0000-0002-3870-0526"
+  
+  title: "Dermoscopic Image Classification"
+  version: 1.0.0
+  # doi: 10.5281/zenodo.3908559  # TODO
+  date-released: 2023-1-10
+  license: GPL-3.0
+  url: "https://github.com/mjan2021/Dermoscopic-image-classification"
