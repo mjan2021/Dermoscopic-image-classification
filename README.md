@@ -98,19 +98,24 @@ torch.cuda.is_available()
 ## Running
 
 #### Training
+`train.py` contain all the training scripts while the parameters used are located in the `config.py`. To make changes to the parameters just change the default values in the `config.py` or pass it with the training script. 
 ```
 python train.py 
 ```
 
 
 
-
-
-
-
 ## Preprocessing
 1. Augmentation
 2. Generative Adversrial Networks
+
+
+### GAN Trainging
+We used AC-GAN to generate Images. It needs to be trained on the minority class image that needs to be extracted from the meta file on the HAM10k meta file. Data folder should contain a single folder  named HAM10k that contains all the images, while the meta files should be placed in the csv folder as train/test.
+
+```
+python GAN-Pytorch.py --data your-data-folder --csv_files csv-files-folder --n_epochs epochs --batch_size 64 --n_classes minority-classes 
+```
 
 ## Models to be used
 
@@ -122,4 +127,5 @@ python train.py
 
 ## Contribution
 @malsaidi @mjan2021
+
 ## Contact
