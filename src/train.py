@@ -148,7 +148,7 @@ if __name__ == '__main__':
     # ======================= Logger ======================= #      
 
     if args.logger == 'tb':
-        logger = SummaryWriter(log_dir=f'../logs/tensorboard/{model._get_name()}/{args.modality}_{args.epochs}_Epochs')
+        tboard = SummaryWriter(log_dir=f'../logs/tensorboard/{model._get_name()}/{args.modality}_{args.epochs}_Epochs')
     else:
         # local logger
         logger = None
@@ -196,7 +196,7 @@ if __name__ == '__main__':
             val_loss, val_correct = valid_epoch(model, device, val_loader, criterion)
             test_loss_epoch, test_acc_epoch, cf_figure, _ = test_inference(model, device, test_loader, criterion,
                                                                            class_names)
-            logger.add_figure("Confusion Matrix Epoch", cf_figure, step)
+            tboard.add_figure("Confusion Matrix Epoch", cf_figure, step)
 
             train_loss = train_loss / len(train_loader.sampler)
             train_acc = train_correct / len(train_loader.sampler) * 100
@@ -214,11 +214,11 @@ if __name__ == '__main__':
 
             # ======================= Save per Epoch ======================================= #
 
-            logger.add_scalars('Loss', {'train': train_loss,
+            tboard.add_scalars('Loss', {'train': train_loss,
                                         'val': val_loss,
                                         'test': test_loss_epoch}, step)
 
-            logger.add_scalars('Acc', {'train': train_acc,
+            tboard.add_scalars('Acc', {'train': train_acc,
                                        'val': val_acc,
                                        'test': test_acc_epoch}, step)
 
@@ -231,31 +231,32 @@ if __name__ == '__main__':
                 torch.save(model.state_dict(),
                            f'../models/{model._get_name()}_{args.modality}_{args.finetune}_{args.epochs}Epochs.pth')
 
-                # Save Scripted Model 
-                scripted_model = torch.jit.script(model)
-                torch.jit.save(scripted_model,
-                               f'../models/scripted_{model._get_name()}_{args.modality}_{args.finetune}_{args.epochs}Epochs.pt')
+                # # Save Scripted Model 
+                # scripted_model = torch.jit.script(model)
+                # torch.jit.save(scripted_model,
+                #                f'../models/scripted_{model._get_name()}_{args.modality}_{args.finetune}_{args.epochs}Epochs.pt')
 
         # ======================= Test Model on HOS ======================= #
 
         # ======================= Test Model on HOS ======================= #
 
-        test_loss, test_correct, cf_figure_fold, cf_matrix = test_inference(model,device,test_loader,criterion,class_names)
+        test_loss, test_correct, cf_figure_fold, cf_matrix = test_inference(model, device, test_loader, criterion, class_names)  # noqa: E501
 
-        logger.add_figure("Confusion Matrix Fold", cf_figure_fold, fold)
+        tboard.add_figure("Confusion Matrix Fold", cf_figure_fold, fold)
 
         test_loss = test_loss / len(test_loader.sampler)
         test_acc = test_correct / len(test_loader.sampler) * 100
 
-        np.save(f'../output_files/cf_matrix/{model._get_name()}_{args.modality}_{args.finetune}_Fold{fold}.npy', cf_matrix)
+        # Save Confusion Matrix as numpy array
+        np.save(f'../output_files/cf_matrix/{model._get_name()}_{args.modality}_{args.finetune}_Fold{fold}.npy', cf_matrix)  # noqa: E501
 
-        logger.add_scalar('Fold/Acc', test_acc, fold)
-        logger.add_scalar('Fold/Loss', test_loss, fold)
+        tboard.add_scalar('Fold/Acc', test_acc, fold)
+        tboard.add_scalar('Fold/Loss', test_loss, fold)
 
         # ======================= Save model if new high accuracy ======================= #
         if test_acc > best_acc:
             # print('#'*25)
-            LOGGER.info(f'New High Acc: <<<<< {test_acc} >>>>>')
+            LOGGER.info(f'Top Accuracy: <<<<< {test_acc} >>>>>')
             # print('#'*25)
             best_acc = test_acc
             best_model_wts = copy.deepcopy(model.state_dict())
