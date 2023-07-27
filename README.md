@@ -45,7 +45,7 @@ and synthetic images, our research provides clear answers to these questions
 
 # Setup
 
-- Clone Github Repository 
+- Clone GitHub Repository 
 
     `git clone [repo link]`
 
@@ -107,10 +107,10 @@ python train.py
 
 ## Preprocessing
 1. Augmentation
-2. Generative Adversrial Networks
+2. Generative Adversarial Networks
 
 
-### GAN Trainging
+### GAN Training
 We used AC-GAN to generate Images. It needs to be trained on the minority class image that needs to be extracted from the meta file on the HAM10k meta file. Data folder should contain a single folder  named HAM10k that contains all the images, while the meta files should be placed in the csv folder as train/test.
 
 ```
