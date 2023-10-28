@@ -129,3 +129,4 @@ python GAN-Pytorch.py --data your-data-folder --csv_files csv-files-folder --n_e
 @malsaidi @mjan2021
 
 ## Contact
+mjan2021@fau.edu
