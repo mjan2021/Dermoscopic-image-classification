@@ -1,6 +1,6 @@
 # Dermoscopic Image Classification
 
-This repository is corresponding to the paper (refrence paper) and it contains the source code and implementation of published study. 
+This repository is corresponding to the paper [Tackling Imbalance dermoscopic image classification using data augmentation and GAN](https://doi.org/10.1007/s11042-023-17067-1) and it contains the source code and implementation of published study. 
     
 ![Dataset Sample](images/Sample.png "Dataset Sample")
 
